@@ -4,7 +4,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Global vars
 
     const overlay = document.querySelector('.overlay'),
-          html = document.querySelector('html'),
+          body = document.querySelector('body'),
           scrollBarWidth = window.innerWidth - document.documentElement.clientWidth,
           message = {
             loading: 'Завантаження...',
@@ -24,8 +24,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
         
                 if (window.innerWidth < 769) {
-                    html.style.marginRight = `0`;
-                    html.style.overflowY = 'scroll';
+                    window.onscroll = () => false;
+                    body.style.marginRight = `0`;
+                    body.classList.add('disableScroll');
                     overlay.classList.remove('fadeIn');
                     overlay.childNodes.forEach(child => child.classList.remove('fadeIn'));
                 };
@@ -57,8 +58,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     closeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            html.style.marginRight = `0`;
-            html.style.overflowY = 'scroll';
+            body.style.marginRight = `0`;
+            body.classList.remove('disableScroll');
             overlay.classList.remove('fadeIn');
             overlay.childNodes.forEach(child => {
                 child.style.display = 'none';
@@ -70,8 +71,8 @@ window.addEventListener('DOMContentLoaded', () => {
     if (window.innerWidth > 768) {
         overlay.addEventListener('click', (e) => {
             if (e.target == overlay) {
-                html.style.marginRight = `0`;
-                html.style.overflowY = 'scroll';
+                body.style.marginRight = `0`;
+                body.classList.remove('disableScroll');
                 overlay.classList.remove('fadeIn');
                 overlay.childNodes.forEach(child => {
                     child.style.display = 'none';
@@ -91,8 +92,8 @@ window.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', function() {
                 const id = this.getAttribute('data-id');
 
-                html.style.marginRight = `${scrollBarWidth}px`;
-                html.style.overflowY = 'hidden';
+                body.style.marginRight = `${scrollBarWidth}px`;
+                body.classList.add('disableScroll');
                 overlayItems.forEach(item => item.style.display = 'none');
                 overlayItems.filter(item => item.id == id)[0].style.display = 'block';
                 overlay.classList.add('fadeIn');
