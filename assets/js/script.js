@@ -25,11 +25,10 @@ window.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
         
                 if (window.innerWidth < 769) {
-                    window.onscroll = () => false;
-                    html.classList.add('disableScroll');
+                    html.classList.remove('disableScroll');
 
                     body.style.marginRight = `0`;
-                    body.classList.add('disableScroll');
+                    body.classList.remove('disableScroll');
 
                     overlay.classList.remove('fadeIn');
                     overlay.childNodes.forEach(child => child.classList.remove('fadeIn'));
