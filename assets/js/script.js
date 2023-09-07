@@ -75,22 +75,20 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    if (window.innerWidth > 768) {
-        overlay.addEventListener('click', (e) => {
-            if (e.target == overlay) {
-                html.classList.remove('disableScroll');
+    overlay.addEventListener('click', (e) => {
+        if (e.target == overlay) {
+            html.classList.remove('disableScroll');
 
-                body.style.marginRight = `0`;
-                body.classList.remove('disableScroll');
+            body.style.marginRight = `0`;
+            body.classList.remove('disableScroll');
 
-                overlay.classList.remove('fadeIn');
-                overlay.childNodes.forEach(child => {
-                    child.style.display = 'none';
-                    child.classList.remove('fadeIn');
-                });
-            };
-        });
-    };
+            overlay.classList.remove('fadeIn');
+            overlay.childNodes.forEach(child => {
+                child.style.display = 'none';
+                child.classList.remove('fadeIn');
+            });
+        };
+    });
 
     // Function to open modal with btn
 
