@@ -117,45 +117,47 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Slider
 
-    function sliderClass(sliderSelector, sliderWrapperSelector, nextSelector, prevSelector, width, slidesSelector) {
-        let offset = 0;
-        const slider = document.querySelector(sliderSelector),
-            sliderWrapper = document.querySelector(sliderWrapperSelector),
-            next = document.querySelector(nextSelector),
-            prev = document.querySelector(prevSelector),
-            slides = document.querySelectorAll(slidesSelector);
-        
-        slider.style.width = 100 * slides.length + '%';
-        slider.style.display = 'flex';
-        slider.style.transition = '0.65s all';
-        sliderWrapper.style.overflow = 'hidden';
-
-        slides.forEach(slides => {
-            slides.style.width = width;
-        });
-
-        next.addEventListener('click', () => {
-            if (offset == (+width.slice(0, width.length - 2) * (slides.length - 1))) {
-                offset = 0;
-            } else {
-                offset += +width.slice(0, width.length - 2);
-            }
-
-            slider.style.transform = `translateX(-${offset}px)`;
-        });
-
-        prev.addEventListener('click', () => {
-            if (offset == 0) {
-                offset = +width.slice(0, width.length - 2) * (slides.length - 1);
-            } else {
-                offset -= +width.slice(0, width.length - 2);
-            }
-
-            slider.style.transform = `translateX(-${offset}px)`;
-        });
-    };
-
-    sliderClass('.mark__slider', '.mark__wrapper', '.mark__btn-right', '.mark__btn-left', window.getComputedStyle(document.querySelector('.mark__wrapper')).width, '.mark__slide');
+    window.addEventListener('resize', () => {
+        function sliderClass(sliderSelector, sliderWrapperSelector, nextSelector, prevSelector, width, slidesSelector) {
+            let offset = 0;
+            const slider = document.querySelector(sliderSelector),
+                sliderWrapper = document.querySelector(sliderWrapperSelector),
+                next = document.querySelector(nextSelector),
+                prev = document.querySelector(prevSelector),
+                slides = document.querySelectorAll(slidesSelector);
+            
+            slider.style.width = 100 * slides.length + '%';
+            slider.style.display = 'flex';
+            slider.style.transition = '0.65s all';
+            sliderWrapper.style.overflow = 'hidden';
+    
+            slides.forEach(slides => {
+                slides.style.width = width;
+            });
+    
+            next.addEventListener('click', () => {
+                if (offset == (+width.slice(0, width.length - 2) * (slides.length - 1))) {
+                    offset = 0;
+                } else {
+                    offset += +width.slice(0, width.length - 2);
+                }
+    
+                slider.style.transform = `translateX(-${offset}px)`;
+            });
+    
+            prev.addEventListener('click', () => {
+                if (offset == 0) {
+                    offset = +width.slice(0, width.length - 2) * (slides.length - 1);
+                } else {
+                    offset -= +width.slice(0, width.length - 2);
+                }
+    
+                slider.style.transform = `translateX(-${offset}px)`;
+            });
+        };
+    
+        sliderClass('.mark__slider', '.mark__wrapper', '.mark__btn-right', '.mark__btn-left', window.getComputedStyle(document.querySelector('.mark__wrapper')).width, '.mark__slide');
+    });
 
     // Send Form
 
